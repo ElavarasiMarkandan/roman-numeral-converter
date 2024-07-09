@@ -22,6 +22,8 @@ import io.swagger.annotations.ApiResponses;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
+// Spring Rest Controller to create REST api for converting Integer to RomanNumeral
+
 @RestController
 @RequestMapping(value = "/romannumeral")
 @Api(value = "REST api to convert Integer to Roman Numeral")
@@ -30,6 +32,14 @@ public class RomanNumeralConverterController
 {
     @Autowired
     RomanNumeralConverterService romanNumeralConverterService;
+
+    /**
+     * GET method to convert int to Roman Numeral with a min value of 1 and max value of 255,
+     * exceptions handled by RestExceptionHandler advice
+     *
+     * @param input
+     * @return RomanNumeralResponseDTO, ErrorResponseDTO
+     */
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation(value = "GET endpoint that accepts an int request and responds with the converted romannumeral in JSON format", response = RomanNumeralResponseDTO.class)

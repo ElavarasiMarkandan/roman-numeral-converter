@@ -3,6 +3,7 @@ package com.romannumeral.converter.roman_numeral_converter.web.dto;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
+// Response DTO for RomanNumeralConverterController
 @AllArgsConstructor
 @NoArgsConstructor
 public class RomanNumeralResponseDTO

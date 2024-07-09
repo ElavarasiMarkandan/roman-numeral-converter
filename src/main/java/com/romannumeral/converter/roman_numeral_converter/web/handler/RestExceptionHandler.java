@@ -15,11 +15,18 @@ import com.romannumeral.converter.roman_numeral_converter.web.error.ErrorMessage
 
 import jakarta.validation.ConstraintViolationException;
 
+/**
+ * Rest Controller advice for handling different types of exceptions
+ * 1. ConstraintViolationException
+ * 2. MethodArgumentTypeMismatchException
+ * 3. RuntimeException
+ **/
 @RestControllerAdvice
 public class RestExceptionHandler
 {
     private static final Logger LOG = LoggerFactory.getLogger(RestExceptionHandler.class);
 
+    // Exception handler method to handle ConstraintViolationException type and returns a error response
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     ResponseEntity<ErrorResponseDTO> handleConstraintViolationException(
@@ -31,6 +38,7 @@ public class RestExceptionHandler
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
     }
 
+    // Exception handler method to handle MethodArgumentTypeMismatchException type and returns a error response
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     ResponseEntity<ErrorResponseDTO> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException methodArgumentTypeMismatchException){
@@ -39,12 +47,13 @@ public class RestExceptionHandler
         return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
     }
 
+    // Exception handler method to handle RuntimeException type and returns a error response
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     ResponseEntity<ErrorResponseDTO> handleRuntimeException(RuntimeException runtimeException){
         ErrorResponseDTO errorResponseDTO = new ErrorResponseDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(), ErrorMessage.INTERNAL_SERVER_ERROR);
         LOG.error(errorResponseDTO.toString(), runtimeException);
-        return new ResponseEntity<>(errorResponseDTO, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorResponseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
