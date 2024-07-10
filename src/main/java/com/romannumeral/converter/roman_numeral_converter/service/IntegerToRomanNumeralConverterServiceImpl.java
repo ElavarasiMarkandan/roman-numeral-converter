@@ -1,7 +1,10 @@
 package com.romannumeral.converter.roman_numeral_converter.service;
 
 import org.springframework.stereotype.Service;
-// Implements IntegerToRomanNumeralConverterService to provide logic for converting integer to roman numeral
+
+/**
+ * Implements IntegerToRomanNumeralConverterService to provide logic for converting integer to roman numeral
+ */
 @Service
 public class IntegerToRomanNumeralConverterServiceImpl implements IntegerToRomanNumeralConverterService
 {
@@ -14,11 +17,10 @@ public class IntegerToRomanNumeralConverterServiceImpl implements IntegerToRoman
      * Static variables are defined for numbers & roman numerals
      * Time Complexity and Space Complexity is O(1) - Because we know the finite number of iterations and memory is constant
      */
-
     @Override public String convertIntegerToRomanNumeral(int input)
     {
         StringBuilder romanNumeralBuilder = new StringBuilder();
-        int times = 0;
+        int times;
 
         //iterate over until the numbers array length to 0
         for (int i = numbers.length - 1; i >= 0; i--)
