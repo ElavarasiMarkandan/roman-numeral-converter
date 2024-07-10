@@ -14,16 +14,16 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import com.romannumeral.converter.roman_numeral_converter.service.RomanNumeralConverterService;
+import com.romannumeral.converter.roman_numeral_converter.service.IntegerToRomanNumeralConverterService;
 import com.romannumeral.converter.roman_numeral_converter.web.error.ErrorMessage;
 
-//  Unit tests - To test validation and exception handling at controller layer
+//  Unit tests - To verify the integer to roman numeral conversion and exception handling
 
-@WebMvcTest(RomanNumeralConverterController.class)
-class RomanNumeralConverterControllerTest
+@WebMvcTest(IntegerToRomanNumeralConverterController.class)
+class IntegerToRomanNumeralConverterControllerTest
 {
     @MockBean
-    RomanNumeralConverterService romanNumeralConverterService;
+    IntegerToRomanNumeralConverterService integerToRomanNumeralConverterService;
 
     @Autowired
     MockMvc mockMvc;
@@ -31,7 +31,7 @@ class RomanNumeralConverterControllerTest
     @Test
     void convertIntegerToRomanNumeral_Success() throws Exception
     {
-        Mockito.when(romanNumeralConverterService.convertIntegerToRomanNumeral(101)).thenReturn("CI");
+        Mockito.when(integerToRomanNumeralConverterService.convertIntegerToRomanNumeral(101)).thenReturn("CI");
 
         mockMvc.perform(MockMvcRequestBuilders.get("/romannumeral?query=101")
                                 .accept(MediaType.APPLICATION_JSON))
@@ -47,7 +47,7 @@ class RomanNumeralConverterControllerTest
                                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().is4xxClientError())
-                .andExpect(content().string(containsString("Invalid input, enter an integer value in the range from 1 to 255")));
+                .andExpect(content().string(containsString(ErrorMessage.INVALID_DATA)));
     }
 
     @Test
@@ -57,7 +57,7 @@ class RomanNumeralConverterControllerTest
                                 .accept(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().is4xxClientError())
-                .andExpect(content().string(containsString("Invalid input, enter an integer value in the range from 1 to 255")));
+                .andExpect(content().string(containsString(ErrorMessage.INVALID_DATA)));
     }
 
     @Test
@@ -73,7 +73,7 @@ class RomanNumeralConverterControllerTest
     @Test
     void convertIntegerToRomanNumeral_internalServerError() throws Exception
     {
-        Mockito.when(romanNumeralConverterService.convertIntegerToRomanNumeral(200)).thenThrow(RuntimeException.class);
+        Mockito.when(integerToRomanNumeralConverterService.convertIntegerToRomanNumeral(200)).thenThrow(RuntimeException.class);
         mockMvc.perform(MockMvcRequestBuilders.get("/romannumeral?query=200"))
                 .andDo(print())
                 .andExpect(status().is5xxServerError())

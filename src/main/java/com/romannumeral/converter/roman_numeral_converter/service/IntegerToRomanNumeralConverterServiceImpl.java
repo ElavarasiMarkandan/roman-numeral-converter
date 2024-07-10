@@ -1,23 +1,18 @@
 package com.romannumeral.converter.roman_numeral_converter.service;
 
 import org.springframework.stereotype.Service;
-// Implements RomanNumeralConverterService to provide logic for converting integer to roman numeral
-
+// Implements IntegerToRomanNumeralConverterService to provide logic for converting integer to roman numeral
 @Service
-public class RomanNumeralConverterServiceImpl implements RomanNumeralConverterService
+public class IntegerToRomanNumeralConverterServiceImpl implements IntegerToRomanNumeralConverterService
 {
     private static final int[] numbers = { 1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000 };
     private static final String[] romanNumerals = { "I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM",
             "M" };
 
     /**
-     * Reference - https://simple.wikipedia.org/wiki/Roman_numerals - Static variables are defined for numbers & roman numerals
-     * to help in converting the integer input to its corresponding roman numeral representation
-     *
-     * Space Complexity - O(1) - Since the input is an integer, the memory used is going to remain constant
-     * Time Complexity - O(1) -Since the number of roman numerals is finite,
-     *                          the iteration can only happen a defined number of times, so the time complexity is O(1)
-     * This method takes integer as input and returns String Roman numeral representation as output
+     * This method takes int as input and returns String Roman numeral representation as output
+     * Static variables are defined for numbers & roman numerals
+     * Time Complexity and Space Complexity is O(1) - Because we know the finite number of iterations and memory is constant
      */
 
     @Override public String convertIntegerToRomanNumeral(int input)
