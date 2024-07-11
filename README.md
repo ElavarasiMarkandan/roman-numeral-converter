@@ -200,7 +200,7 @@ IntegerToRomanNumeralConverterAT
 ```
 ### Load testing report
 Simple Load testing results using Postman. Attached the load test results which I ran with a 50% load of Happy Path and 50% load of Error case
-[View the PDF](screenshots/roman-numeral-converter-performance-report-1.pdf)
+[View the PDF](load-testing-report/roman-numeral-converter-performance-report-1.pdf)
 
 ### Manual test results
 
