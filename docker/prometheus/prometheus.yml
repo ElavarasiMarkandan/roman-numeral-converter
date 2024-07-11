@@ -8,6 +8,6 @@ global:
 scrape_configs:
   # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
   - job_name: 'roman-numeral-converter-metrics'
-    metrics_path: '/actuator/metrics'
+    metrics_path: '/actuator/prometheus'
     static_configs:
       - targets: [ 'roman-numeral-converter:8080' ]
