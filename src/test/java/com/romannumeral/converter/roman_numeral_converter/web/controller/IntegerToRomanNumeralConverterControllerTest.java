@@ -29,7 +29,7 @@ class IntegerToRomanNumeralConverterControllerTest
     MockMvc mockMvc;
 
     @Test
-    void convertIntegerToRomanNumeral_Success() throws Exception
+    void testIntegerToRomanNumeralConverter_Success() throws Exception
     {
         Mockito.when(integerToRomanNumeralConverterService.convertIntegerToRomanNumeral(101)).thenReturn("CI");
 
@@ -41,7 +41,7 @@ class IntegerToRomanNumeralConverterControllerTest
     }
 
     @Test
-    void convertIntegerToRomanNumeral_OutOfRange_LessThanMinError() throws Exception
+    void testIntegerToRomanNumeralConverter_InputOutOfRange_LessThanMinError() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders.get("/romannumeral?query=0")
                                 .accept(MediaType.APPLICATION_JSON))
@@ -51,7 +51,7 @@ class IntegerToRomanNumeralConverterControllerTest
     }
 
     @Test
-    void convertIntegerToRomanNumeral_OutOfRange_GreaterThanMaxError() throws Exception
+    void testIntegerToRomanNumeralConverter_InputOutOfRange_GreaterThanMaxError() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders.get("/romannumeral?query=256")
                                 .accept(MediaType.APPLICATION_JSON))
@@ -61,7 +61,7 @@ class IntegerToRomanNumeralConverterControllerTest
     }
 
     @Test
-    void convertIntegerToRomanNumeral_InvalidType() throws Exception
+    void testIntegerToRomanNumeralConverter_InputInvalidType() throws Exception
     {
         mockMvc.perform(MockMvcRequestBuilders.get("/romannumeral?query=XX")
                                 .accept(MediaType.APPLICATION_JSON))
@@ -71,7 +71,7 @@ class IntegerToRomanNumeralConverterControllerTest
     }
 
     @Test
-    void convertIntegerToRomanNumeral_internalServerError() throws Exception
+    void testIntegerToRomanNumeralConverter_internalServerError() throws Exception
     {
         Mockito.when(integerToRomanNumeralConverterService.convertIntegerToRomanNumeral(200)).thenThrow(RuntimeException.class);
         mockMvc.perform(MockMvcRequestBuilders.get("/romannumeral?query=200"))

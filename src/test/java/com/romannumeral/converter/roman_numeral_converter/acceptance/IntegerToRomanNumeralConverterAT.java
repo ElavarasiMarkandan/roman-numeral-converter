@@ -20,7 +20,7 @@ import com.romannumeral.converter.roman_numeral_converter.web.error.ErrorMessage
 
 // ATs can be integrated as one of the step into the CI/CD pipeline with test cases, which confirms application starts
 // and run without any error and can be deployed to next stage
-public class IntegerToRomanNumeralConversionAT
+public class IntegerToRomanNumeralConverterAT
 {
     // AT #1 - Validate response content type is application/json
     @Test

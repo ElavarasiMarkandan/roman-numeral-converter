@@ -11,7 +11,7 @@ import org.junit.jupiter.api.*;
 class IntegerToRomanNumeralConverterServiceImplTest
 {
     @Test
-    void convertIntegerToRomanNumeral_Success()
+    void testIntegerToRomanNumeralConversion_Success()
     {
         IntegerToRomanNumeralConverterServiceImpl integerToRomanNumeralConverterService = new IntegerToRomanNumeralConverterServiceImpl();
         assertEquals(integerToRomanNumeralConverterService.convertIntegerToRomanNumeral(1), "I");
