@@ -31,7 +31,7 @@ services:
       - "network.host=0.0.0.0"
       - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
     volumes:
-      - ./elasticsearch/data:/usr/share/elasticsearch/data:rw              # Persistence data
+      - ./elasticsearch/data:/usr/share/elasticsearch/data:rw
     healthcheck:
       interval: 10s
       retries: 12
@@ -44,7 +44,7 @@ services:
       - 25826:25826
       - 9600:9600
     volumes:
-      - ./logstash:/usr/share/logstash/pipeline:ro                # Pipeline configuration
+      - ./logstash:/usr/share/logstash/pipeline:ro
     restart: on-failure
     depends_on:
       - elasticsearch
